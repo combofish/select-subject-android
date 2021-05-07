@@ -1,4 +1,4 @@
-package com.combofish.select.adapter
+package com.combofish.selectsubject.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -8,37 +8,43 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.combofish.select.HistoryActivity
-import com.example.pokerrem2.R
-
-import com.example.pokerrem2.data.ReciteRecord
-import com.example.pokerrem2.utils.DBHandler
+import com.combofish.selectsubject.CoursesActivity
+import com.combofish.selectsubject.R
+import com.combofish.selectsubject.bean.Course
 
 
 @Suppress("DEPRECATION")
-class RRRecycleViewAdapter(private var rr: List<ReciteRecord>, private val context: Context) :
-    RecyclerView.Adapter<RRRecycleViewAdapter.RRViewHolder>() {
+class CoursesRecycleViewAdapter(private var courses: List<Course>, private val context: Context) :
+        RecyclerView.Adapter<CoursesRecycleViewAdapter.RRViewHolder>() {
 
-    private var dbHandler = DBHandler(context)
-
+    private val TAG = "CoursesRecycleViewAdapt"
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+            parent: ViewGroup,
+            viewType: Int
     ): RRViewHolder {
-        val view = View.inflate(context, R.layout.rr_item_rv, null)
+        val view = View.inflate(context, R.layout.course_item_rv, null)
         return RRViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RRViewHolder, position: Int) {
         Log.i("TAG", "getPosition: $position")
-        Log.i("TAG", "position: ${rr[position].rememberTime}")
+        //Log.i("TAG", "position: ${rr[position].rememberTime}")
+        Log.i(TAG, "$courses")
 
+        holder.tvCourseName.setText("${courses[position].name}")
+        holder.tvCredit.setText("${courses[position].credit}")
+        holder.tvClassTime.setText("${courses[position].class_time}")
+        holder.tvAvailableNumber.setText("${courses[position].available_amount}")
+        holder.tvTeacher.setText("${courses[position].account_id}")
+
+        /**
         holder.innerPosition = rr[position].id
         holder.tvRight.setText("${rr[position].right}")
         holder.tvWrong.setText("${(54 - rr[position].right)}")
         holder.tvRate.setText("${String.format("%.2f", rr[position].rate)}")
         holder.tvRememberTime.setText("${rr[position].rememberTime}")
         holder.tvDictationTime.setText("${rr[position].dictationTime}")
+         */
 
         /**
         holder.tvRight.setText("正确: ${rr[position].right}")
@@ -50,28 +56,27 @@ class RRRecycleViewAdapter(private var rr: List<ReciteRecord>, private val conte
     }
 
     override fun getItemCount(): Int {
-        return rr.size
+        return courses.size
     }
 
     inner class RRViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
-        var innerPosition: Int = 0
-        val tvRight: TextView
-        val tvWrong: TextView
-        val tvRate: TextView
-        val tvRememberTime: TextView
-        val tvDictationTime: TextView
-        val btn: Button
+            View.OnClickListener {
+
+        var tvCourseName: TextView
+        var tvCredit: TextView
+        var tvClassTime: TextView
+        var tvTeacher: TextView
+        var tvAvailableNumber: TextView
 
         init {
-            tvRight = itemView.findViewById(R.id.tv_right_rr)
-            tvWrong = itemView.findViewById(R.id.tv_wrong_rr)
-            tvRate = itemView.findViewById(R.id.tv_correctRate_rr)
-            tvRememberTime = itemView.findViewById(R.id.rememberTime_rr)
-            tvDictationTime = itemView.findViewById(R.id.dictationTime_rr)
-            btn = itemView.findViewById(R.id.deleteRecord)
+            tvCourseName = itemView.findViewById(R.id.tv_course_name)
+            tvCredit = itemView.findViewById(R.id.tv_credit)
+            tvClassTime = itemView.findViewById(R.id.tv_class_time)
+            tvAvailableNumber = itemView.findViewById(R.id.tv_available_number)
+            tvTeacher = itemView.findViewById(R.id.tv_teacher)
 
-            btn.setOnClickListener(this)
+            //btn = itemView.findViewById(R.id.deleteRecord)
+            //btn.setOnClickListener(this)
 
             itemView.setOnClickListener {
                 mOnItemCLickListener?.onRecycleItemClick(adapterPosition)
@@ -80,23 +85,15 @@ class RRRecycleViewAdapter(private var rr: List<ReciteRecord>, private val conte
 
         override fun onClick(v: View?) {
             Log.i("TAG", "del button press,position: ")
-            val reciteRecord = ReciteRecord(
-                innerPosition,
-                2,
-                2.2f,
-                "",
-                ""
-            )
-            Log.i("TAG", "Want to delete:${reciteRecord}")
-            dbHandler.deleteReciteRecord(reciteRecord)
-            var intent = Intent(context, HistoryActivity::class.java)
+
+            var intent = Intent(context, CoursesActivity::class.java)
             context.startActivity(intent)
         }
 
     }
 
     var mOnItemCLickListener: OnRecycleItemClickListener? =
-        null
+            null
 
     fun setRecycleItemClickListener(listener: OnRecycleItemClickListener?) {
         mOnItemCLickListener = listener

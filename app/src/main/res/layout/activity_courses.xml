@@ -5,171 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.select.CoursesActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".CoursesActivity">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/courseName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/courseName" />
-
-        <TextView
-            android:id="@+id/courseNameStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/courseName" />
-
-        <TextView
-            android:id="@+id/courseCredit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/courseCredit" />
-
-        <TextView
-            android:id="@+id/courseCreditStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/courseCredit" />
-
-        <TextView
-            android:id="@+id/classTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/classTime" />
-
-        <TextView
-            android:id="@+id/classTimeStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/classTime" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/teachTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/teachTime" />
-
-        <TextView
-            android:id="@+id/teachTimeStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/teachTime" />
-
-        <TextView
-            android:id="@+id/classroom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/classroom" />
-
-
-        <TextView
-            android:id="@+id/teacher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/teacher" />
-
-        <TextView
-            android:id="@+id/teacherStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/teacher" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/department"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/department" />
-
-        <TextView
-            android:id="@+id/departmentStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/department" />
-
-        <TextView
-            android:id="@+id/major"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/major" />
-
-        <TextView
-            android:id="@+id/majorStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/major" />
-
-        <TextView
-            android:id="@+id/courseType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/courseType" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/requireType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/requireType" />
-
-        <TextView
-            android:id="@+id/requireTypeStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/requireType" />
-
-        <TextView
-            android:id="@+id/availableNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/availableNumber" />
-
-        <TextView
-            android:id="@+id/availableNumberStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/availableNumber" />
-    </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/introduce"
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/introduce" />
+        android:id="@+id/btn"
+        android:text="Button" />
 
-    <TextView
-        android:id="@+id/introduceStr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/introduce" />
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_courses"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

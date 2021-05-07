@@ -1,16 +1,19 @@
-package com.example.select
+package com.combofish.selectsubject
 
+import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.util.Log
-import android.widget.TextView
+import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.example.select.bean.Course
-import com.example.select.data.DataGlobal
-import com.example.select.webapi.HttpService
-import com.example.uselogin.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.combofish.selectsubject.adapter.CoursesRecycleViewAdapter
+import com.combofish.selectsubject.bean.Course
+import com.combofish.selectsubject.data.DataGlobal
+import com.combofish.selectsubject.webapi.HttpService
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.ResponseBody
@@ -18,21 +21,32 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import java.util.*
 
 class CoursesActivity : AppCompatActivity() {
+
+
+    private val TAG = "CoursesActivity"
+    val coursesType = object : TypeToken<List<Course?>?>() {}.type
     private lateinit var retrofit: Retrofit
     private lateinit var httpService: HttpService
+    private lateinit var gson: Gson
 
-    private var courses_g: List<Course> = mutableListOf()
+    // ui
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var coursesRecycleViewAdapter: CoursesRecycleViewAdapter
+    private lateinit var linearLayoutManager: LinearLayoutManager
+
 
     val handler: Handler = Handler {
         when (it.what) {
             1 -> {
                 try {
-                    var t:List<Course> = it.obj as List<Course>
-                    Log.d(TAG, "t=" + t[0].name)
-                    tv_courseName.setText(t[0].name)
+                    var t: List<Course> = it.obj as List<Course>
+                    Log.d(TAG, "Handle : " + t[0].name)
+
+                    coursesRecycleViewAdapter = CoursesRecycleViewAdapter(t, this)
+                    recyclerView.adapter = coursesRecycleViewAdapter
+
                 } catch (ex: Throwable) {
                     ex.printStackTrace()
                 }
@@ -44,43 +58,55 @@ class CoursesActivity : AppCompatActivity() {
         false
     }
 
-    private lateinit var tv_courseName: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_courses)
+
+        Log.i(TAG,"on courses Activity")
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+
+        // 初始化网络访问
         val url = DataGlobal().url
         retrofit = Retrofit.Builder().baseUrl(url).build()
         httpService = retrofit.create(HttpService::class.java)
-        allCourses()
-        initView()
+        gson = Gson()
+
+        // 布局初始化
+        recyclerView = findViewById(R.id.rv_courses)
+        linearLayoutManager = LinearLayoutManager(this);
+        recyclerView.layoutManager = linearLayoutManager
+
+        initData()
+
+        /**
+        val coursesRecycleViewAdapter = CoursesRecycleViewAdapter(courses, this)
+        recyclerView.adapter = coursesRecycleViewAdapter
+         */
+
     }
 
-    private fun initView() {
-        tv_courseName = findViewById<TextView>(R.id.courseName)
-        // tv_courseName.setText(courses_g[0].name)
-    }
-
-    private fun allCourses() {
-        Log.i("TAG", "login")
-        val gson = Gson()
+    /**
+     * 初始化记录数据
+     */
+    private fun initData() {
         var courses: List<Course>
         val call = httpService.allCoursesServlet
-        call.enqueue(object : Callback<ResponseBody?> {
+        call?.enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
                 try {
                     val result = response.body()
                     val string = result!!.string()
-                    val type = object : TypeToken<List<Course?>?>() {}.type
-                    courses = gson.fromJson(string, type)
-                    Log.i(TAG, courses[0].toString())
+                    courses = gson.fromJson(string, coursesType)
+                    Log.i(TAG, "Get Courses: $courses")
 
-                    courses_g = courses
-                    Log.i(TAG, courses_g.toString())
                     var msg = Message()
                     msg.obj = courses
                     msg.what = 1
                     handler.sendMessage(msg)
-
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -92,9 +118,5 @@ class CoursesActivity : AppCompatActivity() {
                 Log.i("tag", "login fail")
             }
         })
-    }
-
-    companion object {
-        private const val TAG = "CoursesActivity"
     }
 }

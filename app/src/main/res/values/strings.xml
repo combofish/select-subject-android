@@ -10,14 +10,16 @@
     <string name="tv_tittle">用户登录</string>
     <string name="courseName">课程名称</string>
     <string name="courseCredit">学分</string>
-    <string name="classTime">课时</string>
     <string name="teachTime">上课时间</string>
     <string name="classroom">教室</string>
-    <string name="teacher">教师</string>
     <string name="department">所属院系</string>
     <string name="major">专业</string>
     <string name="courseType">类型</string>
     <string name="introduce">简介</string>
     <string name="availableNumber">剩余人数</string>
     <string name="requireType">选课限制</string>
+    <string name="credit">学分</string>
+    <string name="classTime">课时</string>
+    <string name="teacher">教师</string>
+    <string name="availableAmount">余量</string>
 </resources>

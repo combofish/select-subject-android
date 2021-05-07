@@ -1,4 +1,4 @@
-package com.example.select.bean
+package com.combofish.selectsubject.bean
 
 data class Course (
     var id: Int = 0,
