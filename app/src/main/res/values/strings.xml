@@ -23,4 +23,7 @@
     <string name="teacher">教师</string>
     <string name="availableAmount">余量</string>
     <string name="selectCourse">确认选课</string>
+    <string name="title_course">课程</string>
+    <string name="title_me">我的</string>
+    <string name="title_selected_courses">已选课程</string>
 </resources>
