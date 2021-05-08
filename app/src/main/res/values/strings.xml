@@ -22,4 +22,5 @@
     <string name="classTime">课时</string>
     <string name="teacher">教师</string>
     <string name="availableAmount">余量</string>
+    <string name="selectCourse">确认选课</string>
 </resources>

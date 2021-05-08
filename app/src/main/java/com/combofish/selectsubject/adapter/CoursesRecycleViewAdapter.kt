@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.combofish.selectsubject.CourseActivity
 import com.combofish.selectsubject.CoursesActivity
 import com.combofish.selectsubject.R
 import com.combofish.selectsubject.bean.Course
+import com.google.gson.Gson
 
 
 @Suppress("DEPRECATION")
@@ -35,7 +37,7 @@ class CoursesRecycleViewAdapter(private var courses: List<Course>, private val c
         holder.tvCredit.setText("${courses[position].credit}")
         holder.tvClassTime.setText("${courses[position].class_time}")
         holder.tvAvailableNumber.setText("${courses[position].available_amount}")
-        holder.tvTeacher.setText("${courses[position].account_id}")
+        holder.tvTeacher.setText("${courses[position].account_name}")
 
         /**
         holder.innerPosition = rr[position].id
@@ -67,6 +69,7 @@ class CoursesRecycleViewAdapter(private var courses: List<Course>, private val c
         var tvClassTime: TextView
         var tvTeacher: TextView
         var tvAvailableNumber: TextView
+        var watchDetail:Button
 
         init {
             tvCourseName = itemView.findViewById(R.id.tv_course_name)
@@ -75,8 +78,8 @@ class CoursesRecycleViewAdapter(private var courses: List<Course>, private val c
             tvAvailableNumber = itemView.findViewById(R.id.tv_available_number)
             tvTeacher = itemView.findViewById(R.id.tv_teacher)
 
-            //btn = itemView.findViewById(R.id.deleteRecord)
-            //btn.setOnClickListener(this)
+            watchDetail = itemView.findViewById(R.id.watchDetail)
+            watchDetail.setOnClickListener(this)
 
             itemView.setOnClickListener {
                 mOnItemCLickListener?.onRecycleItemClick(adapterPosition)
@@ -84,9 +87,11 @@ class CoursesRecycleViewAdapter(private var courses: List<Course>, private val c
         }
 
         override fun onClick(v: View?) {
-            Log.i("TAG", "del button press,position: ")
+            Log.i(TAG, "watchDetail button press,position: ")
 
-            var intent = Intent(context, CoursesActivity::class.java)
+            var intent = Intent(context, CourseActivity::class.java)
+            var course = courses[position]
+            intent.putExtra("course",Gson().toJson(course))
             context.startActivity(intent)
         }
 

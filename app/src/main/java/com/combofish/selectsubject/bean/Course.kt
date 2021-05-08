@@ -1,6 +1,6 @@
 package com.combofish.selectsubject.bean
 
-data class Course (
+data class Course(
     var id: Int = 0,
     var name: String = "",
     var credit: Int = 0,
@@ -8,8 +8,9 @@ data class Course (
     var teach_time: String = "",
     var classroom: String = "",
     var account_id: Int = 0,
+    var account_name: String = "",
     var department_id: Int = 0,
-    var major_id: Long = 0,
+    var major_id: Int = 0,
     var type: Int = 0,
     var require_type: Int = 0,
     var available_amount: Int = 0,
