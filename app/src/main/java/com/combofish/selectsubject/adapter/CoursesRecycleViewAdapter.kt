@@ -38,23 +38,6 @@ class CoursesRecycleViewAdapter(private var courses: List<Course>, private val c
         holder.tvClassTime.setText("${courses[position].class_time}")
         holder.tvAvailableNumber.setText("${courses[position].available_amount}")
         holder.tvTeacher.setText("${courses[position].account_name}")
-
-        /**
-        holder.innerPosition = rr[position].id
-        holder.tvRight.setText("${rr[position].right}")
-        holder.tvWrong.setText("${(54 - rr[position].right)}")
-        holder.tvRate.setText("${String.format("%.2f", rr[position].rate)}")
-        holder.tvRememberTime.setText("${rr[position].rememberTime}")
-        holder.tvDictationTime.setText("${rr[position].dictationTime}")
-         */
-
-        /**
-        holder.tvRight.setText("正确: ${rr[position].right}")
-        holder.tvWrong.setText("错误: ${(54 - rr[position].right)}")
-        holder.tvRate.setText("正确率: ${String.format("%.2f", rr[position].rate)}")
-        holder.tvRememberTime.setText("背诵时间: ${rr[position].rememberTime}")
-        holder.tvDictationTime.setText("回忆时间: ${rr[position].dictationTime}")
-         */
     }
 
     override fun getItemCount(): Int {
@@ -92,6 +75,7 @@ class CoursesRecycleViewAdapter(private var courses: List<Course>, private val c
             var intent = Intent(context, CourseActivity::class.java)
             var course = courses[position]
             intent.putExtra("course",Gson().toJson(course))
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(intent)
         }
 

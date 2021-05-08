@@ -98,6 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/department" />
+
         <TextView
             android:id="@+id/department"
             android:layout_width="wrap_content"
@@ -177,11 +178,10 @@
         android:text="@string/introduce" />
 
     <Button
+        android:id="@+id/selectCourse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/selectCourse"
-        android:text="@string/selectCourse"/>
-
+        android:text="@string/selectCourse" />
 
 
 </LinearLayout>
