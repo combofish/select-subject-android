@@ -13,6 +13,14 @@ interface HttpService {
     @get:GET("GetAllCoursesServlet")
     val allCoursesServlet: Call<ResponseBody?>?
 
+    @POST("SelectCourseServlet")
+    @FormUrlEncoded
+    fun selectCourse(@Field("account") account: String?, @Field("course") course: String?): Call<ResponseBody?>?
+
+
+    @GET("GetCourseByCourseIdServlet")
+    fun getCourseByCourseId(@Query("course") course:Int?): Call<ResponseBody?>?
+
     /**
      */
     // https://www.httpbin.org/post/xxx
