@@ -8,21 +8,52 @@ import retrofit2.http.*
 interface HttpService {
     @POST("LoginServlet")
     @FormUrlEncoded
-    fun login(@Field("passport") passport: String?, @Field("password") password: String?): Call<ResponseBody?>?
+    fun login(
+        @Field("passport") passport: String?,
+        @Field("password") password: String?
+    ): Call<ResponseBody?>?
 
     @get:GET("GetAllCoursesServlet")
     val allCoursesServlet: Call<ResponseBody?>?
 
     @POST("SelectCourseServlet")
     @FormUrlEncoded
-    fun selectCourse(@Field("account") account: String?, @Field("course") course: String?): Call<ResponseBody?>?
+    fun selectCourse(
+        @Field("account") account: String?,
+        @Field("course") course: String?
+    ): Call<ResponseBody?>?
 
 
     @GET("GetCourseByCourseIdServlet")
-    fun getCourseByCourseId(@Query("course") course:Int?): Call<ResponseBody?>?
+    fun getCourseByCourseId(@Query("course") course: Int?): Call<ResponseBody?>?
+
+    @GET("GetAccountByAccountIdServlet")
+    fun getAccountByAccountId(@Query("account") account: Int?): Call<ResponseBody?>?
+
+    @POST("ChangePasswordByAccountIdServlet")
+    @FormUrlEncoded
+    fun changePasswordByAccountId(
+        @Field("password") password: String?,
+        @Field("account") account: Int?
+    ): Call<ResponseBody?>?
+
+    @GET("GetSelectedCoursesByAccountIdServlet")
+    fun getSelectedCoursesByAccountId(@Query("account") account: Int?): Call<ResponseBody?>?
+
+    @GET("GetCoursesByAccountIdServlet")
+    fun getCoursesByAccountId(@Query("account") account: Int?): Call<ResponseBody?>?
+
+    @POST("CancelSelectCourseServlet")
+    @FormUrlEncoded
+    fun cancelSelectCourse(
+        @Field("account") account: String?,
+        @Field("course") course: String?
+    ): Call<ResponseBody?>?
+
+
+
 
     /**
-     */
     // https://www.httpbin.org/post/xxx
     @POST("post")
     @FormUrlEncoded
@@ -50,4 +81,5 @@ interface HttpService {
 
     @POST
     fun postUrl(@Url url: String?): Call<ResponseBody?>?
+     */
 }
