@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="city">
+        <item>所有课程</item>
+        <item>可选课程</item>
+    </string-array>
+</resources>
