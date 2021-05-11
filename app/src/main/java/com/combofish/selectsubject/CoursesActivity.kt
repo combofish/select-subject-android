@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.combofish.selectsubject.adapter.CoursesRecycleViewAdapter
 import com.combofish.selectsubject.bean.Course
 import com.combofish.selectsubject.data.DataGlobal
+import com.combofish.selectsubject.utils.StatusBarUtils
 import com.combofish.selectsubject.webapi.HttpService
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -65,12 +66,11 @@ class CoursesActivity : AppCompatActivity() {
 
         Log.i(TAG,"on courses Activity")
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        }
+        // bar setting
+        StatusBarUtils().statusBarSet(window)
 
         // 初始化网络访问
-        val url = DataGlobal().url
+        val url = DataGlobal.url
         retrofit = Retrofit.Builder().baseUrl(url).build()
         httpService = retrofit.create(HttpService::class.java)
         gson = Gson()

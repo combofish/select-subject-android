@@ -28,6 +28,12 @@ class CoursesRecycleViewAdapter(private var courses: List<Course>, private val c
         return RRViewHolder(view)
     }
 
+    fun changeCourses(newCourse: MutableList<Course>){
+        //notifyItemMoved(0,oldCourse.size)
+        courses = newCourse
+        // notifyItemMoved(0,5)
+        notifyDataSetChanged()
+    }
     override fun onBindViewHolder(holder: RRViewHolder, position: Int) {
         Log.i("TAG", "getPosition: $position")
         //Log.i("TAG", "position: ${rr[position].rememberTime}")
@@ -75,6 +81,7 @@ class CoursesRecycleViewAdapter(private var courses: List<Course>, private val c
             var intent = Intent(context, CourseActivity::class.java)
             var course = courses[position]
             intent.putExtra("course",Gson().toJson(course))
+            intent.putExtra("opType","0")
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(intent)
         }
