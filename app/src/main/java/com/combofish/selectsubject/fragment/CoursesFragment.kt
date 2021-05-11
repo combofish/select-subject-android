@@ -8,8 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +25,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 
-class CoursesFragment : Fragment() {
+class CoursesFragment : Fragment(), AdapterView.OnItemSelectedListener {
     var message: String? = null
 
     private val TAG = "CoursesFragment"
@@ -35,20 +34,52 @@ class CoursesFragment : Fragment() {
     private lateinit var httpService: HttpService
     private lateinit var gson: Gson
 
+    //private lateinit var course: List<Course>
+
+    var course = mutableListOf<Course>()
+
     // ui
     private lateinit var recyclerView: RecyclerView
     private lateinit var coursesRecycleViewAdapter: CoursesRecycleViewAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
 
+
+    private lateinit var spinner: Spinner
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.i(TAG, "Select position: ${position}")
+
+        // 显示全部
+        if (position.equals(0)) {
+            Log.i(TAG, "Show all courses")
+            coursesRecycleViewAdapter.changeCourses(course as MutableList<Course>)
+        } else {
+            Log.i(TAG, "Show available courses")
+            var availableCourse = mutableListOf<Course>()
+            for (c in course) {
+                if (!c.available_amount.equals(0)) {
+                    availableCourse.add(c)
+                }
+            }
+            coursesRecycleViewAdapter.changeCourses(availableCourse)
+        }
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        TODO("Not yet implemented")
+    }
+
     val handler: Handler = Handler {
         when (it.what) {
             1 -> {
                 try {
-                    var t: List<Course> = it.obj as List<Course>
+                   // var t: List<Course> = it.obj as List<Course>
+                    var t: List<Course> = it.obj as MutableList<Course>
                     Log.d(TAG, "Handle : " + t[0].name)
+                    course = t as MutableList<Course>
 
-                    coursesRecycleViewAdapter = CoursesRecycleViewAdapter(t, activity!!.applicationContext)
-                    recyclerView.adapter = coursesRecycleViewAdapter
+                    coursesRecycleViewAdapter.changeCourses(t as MutableList<Course>)
+                    //coursesRecycleViewAdapter = CoursesRecycleViewAdapter(t, activity!!.applicationContext)
+                    //recyclerView.adapter = coursesRecycleViewAdapter
 
                 } catch (ex: Throwable) {
                     ex.printStackTrace()
@@ -68,7 +99,7 @@ class CoursesFragment : Fragment() {
     ): View? {
         //return inflater.inflate(R.layout.fragment_base, null)
         val inflate = inflater.inflate(R.layout.fragment_courses, null)
-        Log.i(TAG,"in courseFragment!")
+        Log.i(TAG, "in courseFragment!")
         return inflate
     }
 
@@ -78,16 +109,19 @@ class CoursesFragment : Fragment() {
         //viewById.text = message
 
 
-        Log.i(TAG,"on courses Activity")
+        Log.i(TAG, "on courses Activity")
 
         /**
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
-        */
+         */
+
+        // 初始化下拉列表
+        initSpinner(view)
 
         // 初始化网络访问
-        val url = DataGlobal().url
+        val url = DataGlobal.url
         retrofit = Retrofit.Builder().baseUrl(url).build()
         httpService = retrofit.create(HttpService::class.java)
         gson = Gson()
@@ -99,10 +133,26 @@ class CoursesFragment : Fragment() {
 
         initData()
 
+        coursesRecycleViewAdapter =
+            CoursesRecycleViewAdapter(courses = listOf<Course>(), activity!!.applicationContext)
+        recyclerView.adapter = coursesRecycleViewAdapter
+
         /**
         val coursesRecycleViewAdapter = CoursesRecycleViewAdapter(courses, this)
         recyclerView.adapter = coursesRecycleViewAdapter
          */
+    }
+
+    private fun initSpinner(view: View) {
+        spinner = view.findViewById(R.id.spinner1)
+        val createFromResource = ArrayAdapter.createFromResource(
+            view.context,
+            R.array.city,
+            android.R.layout.simple_spinner_item
+        )
+        createFromResource.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = createFromResource
+        spinner.onItemSelectedListener = this
     }
 
     /**

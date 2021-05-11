@@ -1,187 +1,331 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".CourseActivity">
 
     <LinearLayout
+        android:id="@+id/course_ll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="30dp"
         android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/courseNameStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/courseName" />
 
         <TextView
             android:id="@+id/courseName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/courseName" />
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/courseName"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/course_ll2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/course_ll1"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/courseCreditStr"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/courseCredit" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/courseCredit"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/courseCredit"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/courseCredit" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/courseCredit"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/course_ll3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/course_ll2"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/classTimeStr"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/classTime" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/classTime"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/classTime"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/classTime" />
-
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/classTime"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/course_ll4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/course_ll3"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/teachTimeStr"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/teachTime" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/teachTime"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/teachTime"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/teachTime" />
+            android:layout_weight="1"
+            android:text="@string/teachTime"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/course_ll5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/course_ll4"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/classroomStr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/classroom"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/classroom"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/classroom" />
+            android:layout_weight="1"
+            android:text="@string/classroom"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/course_ll6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/course_ll5"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/teacherStr"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/teacher" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/teacher"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/teacher"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/teacher" />
+            android:layout_weight="1"
+            android:text="@string/teacher"
+            android:textSize="18sp" />
     </LinearLayout>
 
-
     <LinearLayout
+        android:id="@+id/course_ll7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/course_ll6"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/departmentStr"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/department" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/department"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/department"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/department" />
+            android:layout_weight="1"
+            android:text="@string/department"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/course_ll8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/course_ll7"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/majorStr"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/major" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/major"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/major"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/major" />
+            android:layout_weight="1"
+            android:text="@string/major"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/course_ll9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/course_ll8"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/courseTypeStr"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/courseType" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/courseType"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/courseType"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/courseType" />
+            android:layout_weight="1"
+
+            android:gravity="center"
+            android:text="@string/courseType"
+            android:textSize="18sp" />
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/course_ll10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/course_ll9"
         android:orientation="horizontal">
-
 
         <TextView
             android:id="@+id/requireTypeStr"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/requireType" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/requireType"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/requireType"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/requireType" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/requireType"
+            android:textSize="18sp" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/course_ll11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/course_ll10"
+
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/availableNumberStr"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/availableNumber" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/availableNumber"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/availableNumber"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/availableNumber" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/availableNumber"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/introduceStr"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/course_ll12"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/introduce" />
+        android:layout_below="@id/course_ll11"
+        android:layout_marginTop="30dp">
 
-    <TextView
-        android:id="@+id/introduce"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/introduce" />
+        <TextView
+            android:id="@+id/introduceStr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/course_ll11"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/introduce"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/introduce"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/introduce"
+            android:textSize="18sp" />
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/selectCourse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/selectCourse" />
 
 
-</LinearLayout>
+</RelativeLayout>
