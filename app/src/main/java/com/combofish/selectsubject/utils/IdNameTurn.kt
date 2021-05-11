@@ -1,6 +1,39 @@
 package com.select.utils
 
 object IdNameTurn {
+
+    fun accountStatusNumToStr(n: Int): String {
+        return when (n) {
+            0 -> "学生"
+            1 -> "老师"
+            else -> "学生"
+        }
+    }
+
+    fun accountStatusStrToNum(str: String): Int {
+        return when (str) {
+            "学生" -> 0
+            "老师" -> 1
+            else -> 0
+        }
+    }
+
+    fun accountSexNumToStr(n: Int): String {
+        return when (n) {
+            0 -> "女"
+            1 -> "男"
+            else -> "女"
+        }
+    }
+
+    fun accountSexStrToNum(str: String): Int {
+        return when (str) {
+            "女" -> 0
+            "男" -> 1
+            else -> 0
+        }
+    }
+
     fun courseTypeNumToStr(n: Int): String {
         return when (n) {
             1 -> "选修课"
