@@ -42,7 +42,12 @@ class SelectedCoursesRecycleViewAdapter(private var courses: List<Course>, priva
         holder.tvCourseName.setText("${courses[position].name}")
         holder.tvCredit.setText("${courses[position].credit}")
         holder.tvClassTime.setText("${courses[position].class_time}")
+
+        // 取消显示余量
         holder.tvAvailableNumber.setText("${courses[position].available_amount}")
+        holder.tvAvailableNumber.visibility = View.GONE
+        holder.tvAvailableNumberStr.visibility = View.GONE
+
         holder.tvTeacher.setText("${courses[position].account_name}")
     }
 
@@ -58,6 +63,7 @@ class SelectedCoursesRecycleViewAdapter(private var courses: List<Course>, priva
         var tvClassTime: TextView
         var tvTeacher: TextView
         var tvAvailableNumber: TextView
+        var tvAvailableNumberStr: TextView
         var watchDetail:Button
 
         init {
@@ -65,6 +71,7 @@ class SelectedCoursesRecycleViewAdapter(private var courses: List<Course>, priva
             tvCredit = itemView.findViewById(R.id.tv_credit)
             tvClassTime = itemView.findViewById(R.id.tv_class_time)
             tvAvailableNumber = itemView.findViewById(R.id.tv_available_number)
+            tvAvailableNumberStr = itemView.findViewById(R.id.tv_available_number_str)
             tvTeacher = itemView.findViewById(R.id.tv_teacher)
 
             watchDetail = itemView.findViewById(R.id.watchDetail)
