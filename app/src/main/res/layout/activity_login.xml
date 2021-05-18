@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/cloud"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
@@ -13,7 +13,7 @@
         android:id="@+id/tv_tittle"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="75dp"
         android:gravity="center"
         android:text="@string/tv_tittle"
         android:textSize="36sp" />
@@ -101,10 +101,20 @@
         android:id="@+id/bt_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_chechbox_rl"
-        android:layout_margin="30dp"
+        android:layout_above="@id/hebut_logo"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="80dp"
         android:text="@string/bt_login"
         android:textSize="35sp" />
+
+    <ImageView
+        android:id="@+id/hebut_logo"
+        android:layout_width="150dp"
+        android:layout_height="72dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/switchForLocalDebug"
+        android:src="@drawable/hebut_logo" />
 
     <Switch
         android:id="@+id/switchForLocalDebug"
