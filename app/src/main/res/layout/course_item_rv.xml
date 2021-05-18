@@ -111,7 +111,7 @@
             android:layout_margin="3dp"
             android:theme="@style/Button.Green"
             android:id="@+id/watchDetail"
-            android:text="详情"/>
+            android:text="@string/course_detail"/>
     </LinearLayout>
 
 </RelativeLayout>

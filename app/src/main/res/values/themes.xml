@@ -17,6 +17,7 @@
     <style name="Button.Green" parent="ThemeOverlay.AppCompat">
         <item name="colorAccent">@color/green2</item>
     </style>
+
     <style name="Theme.SelectSubject2" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
 

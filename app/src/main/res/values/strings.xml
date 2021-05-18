@@ -53,4 +53,6 @@
     <string name="searchClass">查询类别</string>
     <string name="userRole">用户角色</string>
     <string name="teacherCoursesEmpty">该老师没有发布课程</string>
+    <string name="ensure_change_password">确认修改</string>
+    <string name="course_detail">详情</string>
 </resources>
