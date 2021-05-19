@@ -98,7 +98,7 @@ class ChangePasswordActivity : AppCompatActivity(), View.OnClickListener {
     private val gson = Gson()
     private fun changePasswordThroughNetwork(newP: String, accountId: Int) {
         Log.i(TAG, "Change password. new Password: ${newP}. accountId: ${accountId}")
-        val call = HttpServiceImpl.httpService.changePasswordByAccountId(newP, accountId)
+        val call = HttpServiceImpl.httpService.changePasswordByAccountId(newP, accountId,token = DataGlobal.account.password)
         call?.enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
                 try {

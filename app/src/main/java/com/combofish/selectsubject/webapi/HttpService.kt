@@ -34,7 +34,8 @@ interface HttpService {
     @FormUrlEncoded
     fun changePasswordByAccountId(
         @Field("password") password: String?,
-        @Field("account") account: Int?
+        @Field("account") account: Int?,
+        @Field("token") token: String?
     ): Call<ResponseBody?>?
 
     @GET("GetSelectedCoursesByAccountIdServlet")
@@ -49,8 +50,6 @@ interface HttpService {
         @Field("account") account: String?,
         @Field("course") course: String?
     ): Call<ResponseBody?>?
-
-
 
 
     /**
