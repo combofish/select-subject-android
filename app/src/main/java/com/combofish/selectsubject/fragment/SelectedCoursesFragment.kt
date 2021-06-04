@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.combofish.selectsubject.R
@@ -191,6 +192,7 @@ class SelectedCoursesFragment : Fragment() {
         recyclerView = view.findViewById(R.id.selected_course_rv_courses)
         linearLayoutManager = LinearLayoutManager(context!!.applicationContext);
         recyclerView.layoutManager = linearLayoutManager
+        recyclerView.addItemDecoration(DividerItemDecoration(context!!.applicationContext,DividerItemDecoration.VERTICAL))
 
         // 初始化所有课程数据
         // initData()
